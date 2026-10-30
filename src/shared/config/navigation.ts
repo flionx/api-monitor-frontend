@@ -1,4 +1,4 @@
-import { Bell, LayoutDashboard, LucideIcon, Server } from "lucide-react";
+import { Bell, ChartPie, LucideIcon, Server } from "lucide-react";
 
 export interface NavItem {
     title: string;
@@ -7,7 +7,7 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-    { title: "Overview", href: "/overview", icon: LayoutDashboard },
+    { title: "Overview", href: "/overview", icon: ChartPie },
     { title: "Monitors", href: "/monitors", icon: Server },
     { title: "Notifiers", href: "/notifiers", icon: Bell }
 ];
