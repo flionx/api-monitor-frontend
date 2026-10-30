@@ -11,3 +11,5 @@ export const NAV_ITEMS: NavItem[] = [
     { title: "Monitors", href: "/monitors", icon: Server },
     { title: "Notifiers", href: "/notifiers", icon: Bell }
 ];
+
+export const GITHUB_URL = "https://github.com/flionx/api-monitor-frontend";
