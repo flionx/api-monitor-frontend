@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Home() {
-    return <div className="flex flex-1 items-center justify-center">Hello World</div>;
+    redirect("/overview");
 }
