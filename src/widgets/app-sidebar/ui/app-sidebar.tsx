@@ -26,10 +26,14 @@ export function AppSidebar() {
         <Sidebar collapsible="icon">
             <SidebarHeader>
                 {/* Temporary */}
-                <div className="flex h-10 items-center gap-2 px-2">
-                    <CircleUser className="size-5" />
-                    user@gmail.com
-                </div>
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton>
+                            <CircleUser />
+                            <span>user@gmail.com</span>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
@@ -39,6 +43,7 @@ export function AppSidebar() {
                             {NAV_ITEMS.map((item) => (
                                 <SidebarMenuItem key={item.href}>
                                     <SidebarMenuButton
+                                        tooltip={item.title}
                                         isActive={isActivePath(pathname, item.href)}
                                         render={
                                             <Link

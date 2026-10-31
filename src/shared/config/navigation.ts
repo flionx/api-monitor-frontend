@@ -13,3 +13,4 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const GITHUB_URL = "https://github.com/flionx/api-monitor-frontend";
+export const CONTACT_EMAIL = "flionx@duck.com";
