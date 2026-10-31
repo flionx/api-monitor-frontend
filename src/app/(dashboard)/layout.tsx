@@ -2,14 +2,18 @@ import { SidebarInset, SidebarProvider } from "@/shared/ui/sidebar";
 import { AppFooter } from "@/widgets/app-footer";
 import { AppHeader } from "@/widgets/app-header";
 import { AppSidebar } from "@/widgets/app-sidebar";
+import { cookies } from "next/headers";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const cookieStore = await cookies();
+    const defaultOpen = cookieStore.get("sidebar_state")?.value !== "false";
+
     return (
-        <SidebarProvider>
+        <SidebarProvider defaultOpen={defaultOpen}>
             <AppSidebar />
-            <SidebarInset>
+            <SidebarInset className="min-w-0">
                 <AppHeader />
-                <main className="flex-1 p-6">{children}</main>
+                <div className="flex-1 p-6">{children}</div>
                 <AppFooter />
             </SidebarInset>
         </SidebarProvider>
