@@ -1,3 +1,1 @@
-import { AppSidebar } from "./ui/app-sidebar";
-
-export { AppSidebar };
+export { AppSidebar } from "./ui/app-sidebar";
