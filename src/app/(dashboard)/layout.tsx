@@ -1,3 +1,4 @@
+import { SessionGuard } from "@/features/auth/ui/session-guard";
 import { SidebarInset, SidebarProvider } from "@/shared/ui/sidebar";
 import { AppFooter } from "@/widgets/app-footer";
 import { AppHeader } from "@/widgets/app-header";
@@ -10,14 +11,16 @@ export default async function DashboardLayout({ children }: { children: React.Re
     const defaultOpen = cookieStore.get("sidebar_state")?.value !== "false";
 
     return (
-        <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar />
-            <SidebarInset className="min-w-0">
-                <AppHeader />
-                <ServerWakingBanner />
-                <div className="flex-1 p-6">{children}</div>
-                <AppFooter />
-            </SidebarInset>
-        </SidebarProvider>
+        <SessionGuard>
+            <SidebarProvider defaultOpen={defaultOpen}>
+                <AppSidebar />
+                <SidebarInset className="min-w-0">
+                    <AppHeader />
+                    <ServerWakingBanner />
+                    <div className="flex-1 p-6">{children}</div>
+                    <AppFooter />
+                </SidebarInset>
+            </SidebarProvider>
+        </SessionGuard>
     );
 }

@@ -17,6 +17,7 @@ import {
     SidebarMenuItem,
     useSidebar
 } from "@/shared/ui/sidebar";
+import { AccountMenu } from "@/features/auth";
 
 export function AppSidebar() {
     const pathname = usePathname();
@@ -25,15 +26,7 @@ export function AppSidebar() {
     return (
         <Sidebar collapsible="icon">
             <SidebarHeader>
-                {/* Temporary */}
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton>
-                            <CircleUser />
-                            <span>user@gmail.com</span>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
+                <AccountMenu />
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
