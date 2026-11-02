@@ -7,10 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { applyFieldErrors } from "@/shared/lib/form-errors";
 import { isApiError } from "@/shared/api/errors";
 import { AuthCard } from "./auth-card";
-import Link from "next/link";
 import { FormField } from "@/shared/ui/form-field";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
+import Link from "next/link";
 
 export function LoginForm() {
     const login = useLogin();
@@ -28,9 +30,7 @@ export function LoginForm() {
         login.mutate(values, {
             onError: (error) => {
                 if (applyFieldErrors(error, setError, ["email", "password"])) return;
-                setError("root", {
-                    message: isApiError(error) ? error.message : "Network error. Please try again"
-                });
+                toast.error(isApiError(error) ? error.message : "Network error. Please try again");
             }
         });
     });
@@ -67,13 +67,15 @@ export function LoginForm() {
                         {...register("password")}
                     />
                 </FormField>
-                {errors.root?.message && (
-                    <p role="alert" className="text-destructive text-center text-sm">
-                        {errors.root.message}
-                    </p>
-                )}
                 <Button type="submit" size="lg" disabled={login.isPending} className="mt-2">
-                    {login.isPending ? "Logging in..." : "Log In"}
+                    {login.isPending ? (
+                        <>
+                            <Loader className="animate-spin" />
+                            <span className="sr-only">Logging in...</span>
+                        </>
+                    ) : (
+                        "Log In"
+                    )}
                 </Button>
             </form>
         </AuthCard>

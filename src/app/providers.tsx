@@ -17,7 +17,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
             <NuqsAdapter>{children}</NuqsAdapter>
-            <Toaster />
+            <Toaster richColors closeButton />
         </QueryClientProvider>
     );
 }

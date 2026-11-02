@@ -7,10 +7,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { applyFieldErrors } from "@/shared/lib/form-errors";
 import { isApiError } from "@/shared/api/errors";
 import { AuthCard } from "./auth-card";
-import Link from "next/link";
 import { FormField } from "@/shared/ui/form-field";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
+import { toast } from "sonner";
+import { Loader } from "lucide-react";
+import Link from "next/link";
 
 export function RegisterForm() {
     const registerUser = useRegister();
@@ -28,13 +30,7 @@ export function RegisterForm() {
         registerUser.mutate(values, {
             onError: (error) => {
                 if (applyFieldErrors(error, setError, ["email", "password"])) return;
-                if (isApiError(error) && error.status === 409) {
-                    setError("email", { type: "server", message: error.message });
-                    return;
-                }
-                setError("root", {
-                    message: isApiError(error) ? error.message : "Network error. Please try again"
-                });
+                toast.error(isApiError(error) ? error.message : "Network error. Please try again");
             }
         });
     });
@@ -76,13 +72,15 @@ export function RegisterForm() {
                         {...register("password")}
                     />
                 </FormField>
-                {errors.root?.message && (
-                    <p role="alert" className="text-destructive text-center text-sm">
-                        {errors.root.message}
-                    </p>
-                )}
                 <Button type="submit" size="lg" disabled={registerUser.isPending} className="mt-2">
-                    {registerUser.isPending ? "Creating account..." : "Sign Up"}
+                    {registerUser.isPending ? (
+                        <>
+                            <Loader className="animate-spin" />
+                            <span className="sr-only">Creating account...</span>
+                        </>
+                    ) : (
+                        "Sign Up"
+                    )}
                 </Button>
             </form>
         </AuthCard>

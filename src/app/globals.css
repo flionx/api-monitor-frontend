@@ -98,3 +98,9 @@
         @apply font-sans;
     }
 }
+
+[data-sonner-toaster] {
+    --toast-close-button-start: unset !important;
+    --toast-close-button-end: 0 !important;
+    --toast-close-button-transform: translate(35%, -35%) !important;
+}

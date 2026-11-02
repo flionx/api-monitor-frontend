@@ -1,4 +1,4 @@
-import { RegisterForm } from "@/features/auth/ui/register-form";
+import { RegisterForm } from "@/features/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Sign Up" };
