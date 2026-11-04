@@ -1,6 +1,6 @@
 import { CONTACT_EMAIL, GITHUB_URL } from "@/shared/config/navigation";
 
-export const AppFooter = () => {
+export function AppFooter() {
     return (
         <footer className="text-muted-foreground flex items-center justify-between px-6 py-4 text-xs">
             <span>{new Date().getFullYear()} API Monitor</span>
@@ -22,4 +22,4 @@ export const AppFooter = () => {
             </div>
         </footer>
     );
-};
+}

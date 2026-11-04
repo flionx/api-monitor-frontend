@@ -11,7 +11,7 @@ import {
 } from "@/shared/ui/dropdown-menu";
 import { CircleUser, LogOut, MoreHorizontal } from "lucide-react";
 
-export const AccountMenu = () => {
+export function AccountMenu() {
     const { data: user } = useMe();
     const logout = useLogout();
     const { isMobile } = useSidebar();
@@ -46,4 +46,4 @@ export const AccountMenu = () => {
             </SidebarMenuItem>
         </SidebarMenu>
     );
-};
+}

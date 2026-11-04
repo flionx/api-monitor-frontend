@@ -3,7 +3,7 @@
 import { useServerStatus } from "@/shared/stores/server-status";
 import { Loader } from "lucide-react";
 
-export const ServerWakingBanner = () => {
+export function ServerWakingBanner() {
     const isWaking = useServerStatus((s) => s.isWaking);
     if (!isWaking) return;
 
@@ -13,4 +13,4 @@ export const ServerWakingBanner = () => {
             Server is waking up, this can take up to a minute...
         </div>
     );
-};
+}

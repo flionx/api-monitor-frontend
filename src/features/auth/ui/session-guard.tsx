@@ -8,7 +8,7 @@ import { isApiError } from "@/shared/api/errors";
 import { Button } from "@/shared/ui/button";
 import { Loader } from "lucide-react";
 
-export const SessionGuard = ({ children }: { children: ReactNode }) => {
+export function SessionGuard({ children }: { children: ReactNode }) {
     const router = useRouter();
     const isWaking = useServerStatus((s) => s.isWaking);
     const { data: user, error, refetch, isFetching } = useMe();
@@ -37,4 +37,4 @@ export const SessionGuard = ({ children }: { children: ReactNode }) => {
             {isWaking ? "Server is waking up, this can take up to a minute..." : "Loading..."}
         </div>
     );
-};
+}
