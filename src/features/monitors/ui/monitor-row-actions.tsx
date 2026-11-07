@@ -13,6 +13,7 @@ export function MonitorRowActions({ monitor }: { monitor: Monitor }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger
+                className="cursor-pointer"
                 render={<Button variant="ghost" size="icon-sm" aria-label="Monitor actions" />}
             >
                 <MoreHorizontal />
