@@ -30,7 +30,7 @@ export function tabToFilters(tab: StatusTab): Pick<MonitorListQuery, "status" | 
         case "pending":
             return { status: "unknown", isActive: true };
         case "paused":
-            return { isActive: true };
+            return { isActive: false };
         default:
             return {};
     }

@@ -19,7 +19,7 @@ export function EmptyState({
     imageAlt
 }: EmptyStateProps) {
     return (
-        <div className="flex flex-col items-center gap-2 px-4 py-16 text-center">
+        <div className="flex h-9/10 flex-col items-center justify-center gap-2 px-4 py-16 text-center">
             {imageSrc ? (
                 <Image
                     src={imageSrc}
