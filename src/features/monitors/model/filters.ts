@@ -11,7 +11,7 @@ export const STATUS_TAB_LABELS: Record<StatusTab, string> = {
     paused: "Paused"
 };
 
-export const PAGE_SIZE = 20;
+export const PAGE_SIZE = 10;
 
 export type MonitorListQuery = {
     limit: number;

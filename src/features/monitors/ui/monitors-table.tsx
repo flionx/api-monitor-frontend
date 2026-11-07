@@ -1,12 +1,12 @@
-import { Monitor } from "@/shared/api/types";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui/table";
-import { StatusBadge } from "./status-badge";
-import { getDisplayStatus } from "@/shared/lib/status";
 import Link from "next/link";
-import { formatDateTime, formatRelative, formatResponseTime } from "@/shared/lib/format";
-import { MonitorRowActions } from "./monitor-row-actions";
 import { cn } from "cn";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui/table";
+import { formatDateTime, formatRelative, formatResponseTime } from "@/shared/lib/format";
+import { getDisplayStatus } from "@/shared/lib/status";
+import { StatusBadge } from "./status-badge";
+import { MonitorRowActions } from "./monitor-row-actions";
 import { Skeleton } from "@/shared/ui/skeleton";
+import { Monitor } from "@/shared/api/types";
 
 const HEAD = "text-muted-foreground text-xs font-normal";
 
