@@ -1,4 +1,4 @@
-import { SessionGuard } from "@/features/auth/ui/session-guard";
+import { SessionGuard } from "@/features/auth";
 import { SidebarInset, SidebarProvider } from "@/shared/ui/sidebar";
 import { AppFooter } from "@/widgets/app-footer";
 import { AppHeader } from "@/widgets/app-header";

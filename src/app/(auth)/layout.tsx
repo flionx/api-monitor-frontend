@@ -1,6 +1,6 @@
-import { GuestGuard } from "@/features/auth/ui/guest-guard";
+import { ReactNode } from "react";
+import { GuestGuard } from "@/features/auth";
 import { AppFooter } from "@/widgets/app-footer";
-import React, { ReactNode } from "react";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
     return (

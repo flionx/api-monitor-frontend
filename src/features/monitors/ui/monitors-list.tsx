@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useQueryStates } from "nuqs";
 import { useMonitors } from "../model/queries";
 import { useDebouncedValue } from "@/shared/hooks/use-debounced-value";
+import { useDelayedLoading } from "@/shared/hooks/use-delayed-loading";
 import { monitorListParsers } from "../model/search-params";
 import { PAGE_SIZE, StatusTab, toListQuery } from "../model/filters";
 import { MonitorsTable, MonitorsTableSkeleton } from "./monitors-table";
@@ -40,8 +41,10 @@ export function MonitorsList() {
         }
     }, [data, isPlaceholderData, page, lastPage, setParams]);
 
+    const showSkeleton = useDelayedLoading(isPending);
+
     const hasFilters = tab !== "all" || params.q !== "";
-    const showToolbar = isPending || isError || hasFilters || total > 0;
+    const showToolbar = isError || hasFilters || total > 0;
 
     const handleTabChange = (next: StatusTab) =>
         setParams({ status: next === "all" ? null : next, page: null });
@@ -53,7 +56,7 @@ export function MonitorsList() {
 
     let content;
     if (isPending) {
-        content = <MonitorsTableSkeleton />;
+        content = showSkeleton ? <MonitorsTableSkeleton /> : null;
     } else if (isError) {
         content = <ErrorState message="Could not load monitors" onRetry={() => refetch()} />;
     } else if (data.meta.total === 0) {
