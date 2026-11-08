@@ -46,7 +46,7 @@ export const monitorFormSchema = z
         customInterval: z.string(),
         customUnit: z.enum(INTERVAL_UNITS),
         timeoutSeconds: wholeNumber("Timeout", 1, 30),
-        failureThreshold: wholeNumber("Failure threshold", 1, 30),
+        failureThreshold: wholeNumber("Failure threshold", 1, 10),
         isActive: z.boolean()
     })
     .superRefine((values, ctx) => {

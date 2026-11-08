@@ -1,5 +1,5 @@
 import { MonitorInput } from "@/shared/api/types";
-import { MonitorFormValues } from "./schema";
+import { MonitorFormValues } from "./schemas";
 import { getIntervalSeconds } from "./interval";
 import { parseWholeNumber } from "@/shared/lib/numbers";
 
