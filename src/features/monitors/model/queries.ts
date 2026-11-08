@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { MonitorListQuery } from "./filters";
 import { monitorsApi } from "../api/monitors-api";
 
@@ -14,5 +14,14 @@ export function useMonitors(query: MonitorListQuery) {
         queryFn: ({ signal }) => monitorsApi.list(query, signal),
         placeholderData: keepPreviousData,
         refetchInterval: 15_000
+    });
+}
+
+export function useCreateMonitor() {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: monitorsApi.create,
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: monitorKeys.all })
     });
 }

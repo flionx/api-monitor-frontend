@@ -118,3 +118,12 @@ export interface Chart {
     bucketSeconds: number;
     points: ChartPoint[];
 }
+
+export interface MonitorInput {
+    name: string;
+    url: string;
+    intervalSeconds: number;
+    timeoutMs: number;
+    failureThreshold: number;
+    isActive: boolean;
+}
