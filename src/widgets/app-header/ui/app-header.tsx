@@ -1,0 +1,13 @@
+import { Separator } from "@/shared/ui/separator";
+import { SidebarTrigger } from "@/shared/ui/sidebar";
+import { AppBreadcrumbs } from "./app-breadcrumbs";
+
+export function AppHeader() {
+    return (
+        <header className="flex h-14 shrink-0 items-center gap-2 border-b px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator orientation="vertical" className="mx-2 h-4" />
+            <AppBreadcrumbs />
+        </header>
+    );
+}
