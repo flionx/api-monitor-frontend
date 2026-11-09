@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# API Monitor - Frontend
 
-## Getting Started
+Frontend for [API Monitor](https://github.com/flionx/api-monitor-backend), an uptime and availability monitoring service. Built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
 
-First, run the development server:
+## Status
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚧 **Work in progress.** Auth, layout, a paginated monitors list, and the create monitor form are implemented. Monitor details, check history, metrics, and notifiers are coming next.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + shadcn/ui (Base UI)
+- **Data fetching:** TanStack Query
+- **Forms:** React Hook Form + Zod
+- **State:** Zustand (UI state), nuqs (URL state)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Getting started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 24, pnpm (version pinned in `package.json` via `packageManager`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository and install dependencies:
 
-## Deploy on Vercel
+    ```bash
+    git clone https://github.com/flionx/api-monitor-frontend.git
+    cd api-monitor-frontend
+    pnpm install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Configure environment variables:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    cp .env.example .env     # then edit BACKEND_URL
+    ```
+
+3. Run the development server:
+
+    ```bash
+    pnpm dev
+    ```
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
