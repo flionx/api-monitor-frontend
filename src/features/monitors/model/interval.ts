@@ -1,4 +1,4 @@
-import { parseWholeNumber } from "@/shared/lib/numbers";
+import { parseInteger } from "@/shared/lib/numbers";
 
 export const CUSTOM_INTERVAL = "custom";
 
@@ -26,6 +26,6 @@ interface IntervalFields {
 
 export function getIntervalSeconds(fields: IntervalFields): number | null {
     if (fields.intervalPreset !== CUSTOM_INTERVAL) return Number(fields.intervalPreset);
-    const amount = parseWholeNumber(fields.customInterval);
+    const amount = parseInteger(fields.customInterval);
     return amount === null ? null : amount * UNIT_FACTOR[fields.customUnit];
 }

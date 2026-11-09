@@ -47,6 +47,7 @@ export function MonitorForm({
         control,
         handleSubmit,
         setError,
+        clearErrors,
         formState: { errors, isSubmitting }
     } = useForm<MonitorFormValues>({
         resolver: zodResolver(monitorFormSchema),
@@ -95,6 +96,7 @@ export function MonitorForm({
                     <IntervalField
                         control={control}
                         register={register}
+                        clearErrors={clearErrors}
                         error={errors.intervalPreset?.message ?? errors.customInterval?.message}
                     />
                     <FormField

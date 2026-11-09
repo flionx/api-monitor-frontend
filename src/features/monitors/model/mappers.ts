@@ -1,7 +1,7 @@
 import { MonitorInput } from "@/shared/api/types";
 import { MonitorFormValues } from "./schemas";
 import { getIntervalSeconds } from "./interval";
-import { parseWholeNumber } from "@/shared/lib/numbers";
+import { parseInteger } from "@/shared/lib/numbers";
 
 export const DEFAULT_FORM_VALUES: MonitorFormValues = {
     name: "",
@@ -16,8 +16,8 @@ export const DEFAULT_FORM_VALUES: MonitorFormValues = {
 
 export function toMonitorInput(values: MonitorFormValues): MonitorInput {
     const intervalSeconds = getIntervalSeconds(values);
-    const timeoutSeconds = parseWholeNumber(values.timeoutSeconds);
-    const failureThreshold = parseWholeNumber(values.failureThreshold);
+    const timeoutSeconds = parseInteger(values.timeoutSeconds);
+    const failureThreshold = parseInteger(values.failureThreshold);
 
     if (intervalSeconds === null || timeoutSeconds === null || failureThreshold === null) {
         throw new Error("Form values must be validated before mapping");
