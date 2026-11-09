@@ -1,6 +1,7 @@
 "use client";
 
-import { buildBreadcrumbs } from "@/shared/lib/breadcrumbs";
+import { useMonitor } from "@/features/monitors";
+import { buildBreadcrumbs, getMonitorId } from "@/shared/lib/breadcrumbs";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -14,7 +15,9 @@ import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
 export function AppBreadcrumbs() {
-    const crumbs = buildBreadcrumbs(usePathname());
+    const pathname = usePathname();
+    const { data: monitor } = useMonitor(getMonitorId(pathname));
+    const crumbs = buildBreadcrumbs(pathname, monitor?.name);
 
     return (
         <Breadcrumb>
