@@ -25,7 +25,7 @@ export function MonitorRowActions({ monitor }: { monitor: Monitor }) {
                     <ExternalLink />
                     Visit
                 </DropdownMenuItem>
-                <DropdownMenuItem render={<Link href={`/monitor/${monitor.id}/settings`} />}>
+                <DropdownMenuItem render={<Link href={`/monitors/${monitor.id}/settings`} />}>
                     <Pencil />
                     Edit
                 </DropdownMenuItem>

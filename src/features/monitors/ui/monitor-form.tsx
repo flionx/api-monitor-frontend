@@ -32,6 +32,7 @@ interface MonitorFormProps {
     submitLabel: string;
     pendingLabel: string;
     cancelHref: string;
+    requireChanges?: boolean;
     onSubmit: (values: MonitorFormValues) => Promise<unknown>;
 }
 
@@ -40,6 +41,7 @@ export function MonitorForm({
     submitLabel,
     pendingLabel,
     cancelHref,
+    requireChanges = false,
     onSubmit
 }: MonitorFormProps) {
     const {
@@ -48,7 +50,7 @@ export function MonitorForm({
         handleSubmit,
         setError,
         clearErrors,
-        formState: { errors, isSubmitting }
+        formState: { errors, isSubmitting, isDirty }
     } = useForm<MonitorFormValues>({
         resolver: zodResolver(monitorFormSchema),
         defaultValues
@@ -159,7 +161,7 @@ export function MonitorForm({
                 <Link href={cancelHref} className={buttonVariants({ variant: "outline" })}>
                     Cancel
                 </Link>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button type="submit" disabled={isSubmitting || (requireChanges && !isDirty)}>
                     {isSubmitting ? pendingLabel : submitLabel}
                 </Button>
             </div>
