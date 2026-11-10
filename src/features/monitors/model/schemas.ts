@@ -1,5 +1,5 @@
 import z from "zod";
-import { parseWholeNumber } from "@/shared/lib/numbers";
+import { parseInteger } from "@/shared/lib/numbers";
 import {
     CUSTOM_INTERVAL,
     getIntervalSeconds,
@@ -22,10 +22,10 @@ function wholeNumber(label: string, min: number, max: number) {
         .string()
         .trim()
         .min(1, `${label} is required`)
-        .refine((value) => parseWholeNumber(value) !== null, "Enter a whole number")
+        .refine((value) => parseInteger(value) !== null, "Enter a whole number")
         .refine((value) => {
-            const number = parseWholeNumber(value);
-            return number !== null && number >= min && number <= max;
+            const number = parseInteger(value);
+            return number === null || (number >= min && number <= max);
         }, `${label} must be between ${min} and ${max}`);
 }
 

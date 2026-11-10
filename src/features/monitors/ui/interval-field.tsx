@@ -1,6 +1,12 @@
 "use client";
 
-import { Control, Controller, UseFormRegister, useWatch } from "react-hook-form";
+import {
+    Control,
+    Controller,
+    UseFormClearErrors,
+    UseFormRegister,
+    useWatch
+} from "react-hook-form";
 import { MonitorFormValues } from "../model/schemas";
 import { CUSTOM_INTERVAL, INTERVAL_PRESETS, INTERVAL_UNITS } from "../model/interval";
 import { FormField } from "@/shared/ui/form-field";
@@ -10,6 +16,7 @@ import { Input } from "@/shared/ui/input";
 interface IntervalFieldProps {
     control: Control<MonitorFormValues>;
     register: UseFormRegister<MonitorFormValues>;
+    clearErrors: UseFormClearErrors<MonitorFormValues>;
     error?: string;
 }
 
@@ -18,7 +25,7 @@ const PRESET_LABELS: Record<string, string> = {
     [CUSTOM_INTERVAL]: "Custom"
 };
 
-export function IntervalField({ control, register, error }: IntervalFieldProps) {
+export function IntervalField({ control, register, clearErrors, error }: IntervalFieldProps) {
     const preset = useWatch({ control, name: "intervalPreset" });
     const isCustom = preset === CUSTOM_INTERVAL;
 
@@ -36,7 +43,11 @@ export function IntervalField({ control, register, error }: IntervalFieldProps) 
                     render={({ field }) => (
                         <Select
                             value={field.value}
-                            onValueChange={(value) => value && field.onChange(value)}
+                            onValueChange={(value) => {
+                                if (!value) return;
+                                field.onChange(value);
+                                clearErrors(["intervalPreset", "customInterval"]);
+                            }}
                         >
                             <SelectTrigger id="intervalPreset" className="w-full">
                                 <SelectValue>
@@ -71,7 +82,11 @@ export function IntervalField({ control, register, error }: IntervalFieldProps) 
                             render={({ field }) => (
                                 <Select
                                     value={field.value}
-                                    onValueChange={(value) => value && field.onChange(value)}
+                                    onValueChange={(value) => {
+                                        if (!value) return;
+                                        field.onChange(value);
+                                        clearErrors(["customInterval"]);
+                                    }}
                                 >
                                     <SelectTrigger aria-label="Interval unit" className="w-32">
                                         <SelectValue>{(value: string) => value}</SelectValue>

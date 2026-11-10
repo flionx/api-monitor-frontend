@@ -1,3 +1,5 @@
+import { parseId } from "./numbers";
+
 export interface Crumb {
     label: string;
     href?: string;
@@ -11,7 +13,12 @@ const MONITOR_TABS: Record<string, string> = {
     settings: "Settings"
 };
 
-export function buildBreadcrumbs(pathname: string): Crumb[] {
+export function getMonitorId(pathname: string): number | null {
+    const match = /^\/monitors\/(\d+)(?:\/|$)/.exec(pathname);
+    return match ? parseId(match[1]) : null;
+}
+
+export function buildBreadcrumbs(pathname: string, monitorName?: string): Crumb[] {
     const [section, second, third] = pathname.split("/").filter(Boolean);
 
     if (section === "overview") return [ROOT, { label: "Overview" }];
@@ -23,7 +30,7 @@ export function buildBreadcrumbs(pathname: string): Crumb[] {
         const monitors: Crumb = { label: "Monitors", href: "/monitors" };
         if (second === "new") return [ROOT, monitors, { label: "Create Monitor" }];
 
-        const label = `#${second}`;
+        const label = monitorName ?? `#${second}`;
         const tab = third ? MONITOR_TABS[third] : undefined;
         if (!tab) return [ROOT, monitors, { label }];
 
