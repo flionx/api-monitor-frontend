@@ -20,7 +20,7 @@ export default function MonitorTabs({ id }: { id: number }) {
             className="flex gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--border)]"
         >
             {TABS.map((tab) => {
-                const href = `/monitors/${id}/${tab.path}`;
+                const href = `/monitors/${id}${tab.path}`;
                 const isActive = pathname === href;
 
                 return (
@@ -31,7 +31,7 @@ export default function MonitorTabs({ id }: { id: number }) {
                         className={cn(
                             "border-b-2 px-3 py-2 text-sm whitespace-nowrap transition-colors",
                             isActive
-                                ? "border-primary text-foreground font-medium"
+                                ? "border-foreground text-foreground font-medium"
                                 : "text-muted-foreground hover:text-foreground border-transparent"
                         )}
                     >

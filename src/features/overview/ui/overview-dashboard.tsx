@@ -38,12 +38,14 @@ export function OverviewDashboard() {
 
     if (data.counts.total === 0) {
         return (
-            <EmptyState
-                imageSrc="/images/empty-state.webp"
-                title="No monitors"
-                description="To get started, add your first monitor"
-                action={<AddMonitorButton label="Add a monitor" />}
-            />
+            <div className="h-full">
+                <EmptyState
+                    imageSrc="/images/empty-state.webp"
+                    title="No monitors"
+                    description="To get started, add your first monitor"
+                    action={<AddMonitorButton label="Add a monitor" />}
+                />
+            </div>
         );
     }
 
