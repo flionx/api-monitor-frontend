@@ -26,7 +26,7 @@ export function StatCard({ label, value, icon: Icon, href, tone }: StatCardProps
     return (
         <Link
             href={href}
-            className="bg-card hover:bg-secondary focus-visible:ring-ring flex flex-col gap-3 rounded-xl p-4 transition-colors outline-none focus-visible:ring-2"
+            className="bg-card hover:bg-secondary focus-visible:ring-ring border-border/50 flex flex-col gap-3 rounded-xl border p-4 transition-colors outline-none focus-visible:ring-2"
         >
             <div className="flex items-center justify-between gap-2">
                 <span className="text-muted-foreground text-sm">{label}</span>

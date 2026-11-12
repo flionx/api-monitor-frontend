@@ -19,7 +19,7 @@ export default function UptimeCard({ uptime }: { uptime: Summary["uptime24h"] })
     const tone = percent === null ? null : getUptimeTone(percent);
 
     return (
-        <section className="bg-card flex flex-col gap-3 rounded-xl p-4">
+        <section className="bg-card flex flex-col gap-3 rounded-xl p-6">
             <h2 className="text-muted-foreground text-sm">Uptime, last 24 hours</h2>
             {percent === null || tone === null ? (
                 <>

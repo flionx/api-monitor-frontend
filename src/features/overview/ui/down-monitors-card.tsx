@@ -1,7 +1,7 @@
+import Link from "next/link";
+import { CircleCheck } from "lucide-react";
 import { Summary } from "@/shared/api/types";
 import { formatDateTime, formatRelative } from "@/shared/lib/format";
-import { CircleCheck } from "lucide-react";
-import Link from "next/link";
 
 interface DownMonitorsCardProps {
     monitors: Summary["downMonitors"];
@@ -12,7 +12,7 @@ export default function DownMonitorsCard({ monitors, totalDown }: DownMonitorsCa
     const hiddenCount = totalDown - monitors.length;
 
     return (
-        <section className="bg-card flex flex-col gap-2 rounded-xl p-4">
+        <section className="bg-card flex h-full flex-col gap-2 rounded-xl p-4">
             <div className="flex items-center justify-between gap-2">
                 <h2 className="text-muted-foreground text-sm">Down monitors</h2>
                 {totalDown > 0 && (
