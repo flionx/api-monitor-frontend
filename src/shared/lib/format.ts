@@ -15,3 +15,8 @@ export function formatResponseTime(ms: number | null): string {
     if (ms === null) return "-";
     return ms >= 1000 ? `${(ms / 1000).toFixed(2)} s` : `${ms} ms`;
 }
+
+export function formatBucketSize(seconds: number): string {
+    if (seconds < 3600) return `${Math.round(seconds / 60)} min`;
+    return `${Number((seconds / 3600).toFixed(1))} h`;
+}

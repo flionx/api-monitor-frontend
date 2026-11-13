@@ -127,3 +127,9 @@ export interface MonitorInput {
     failureThreshold: number;
     isActive: boolean;
 }
+
+export interface MonitorOverview {
+    monitor: Monitor;
+    stats: Stats;
+    chart: Chart;
+}
