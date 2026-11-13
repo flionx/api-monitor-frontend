@@ -1,6 +1,6 @@
 import { cn } from "cn";
 import { Summary } from "@/shared/api/types";
-import { formatPercent, getUptimeTone, UptimeTone } from "../model/uptime";
+import { formatPercent, getUptimeTone, UptimeTone } from "@/shared/lib/uptime";
 
 const TEXT: Record<UptimeTone, string> = {
     danger: "text-destructive",
