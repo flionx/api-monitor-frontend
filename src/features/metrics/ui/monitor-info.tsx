@@ -9,6 +9,7 @@ import { ErrorState } from "@/shared/ui/error-state";
 import { StatsCards } from "./stats-cards";
 import { ResponseTimeChart } from "./response-time-chart";
 import { RangeSwitcher } from "./range-switcher";
+import { useMonitor } from "@/features/monitors";
 
 function InfoSkeleton() {
     return (
@@ -25,7 +26,12 @@ function InfoSkeleton() {
 
 export function MonitorInfo({ id }: { id: number }) {
     const [range, setRange] = useQueryState("range", rangeParser);
-    const { data, isPending, isError, isPlaceholderData, refetch } = useMonitorMetrics(id, range);
+    const { data: monitor } = useMonitor(id);
+    const { data, isPending, isError, isPlaceholderData, refetch } = useMonitorMetrics(
+        id,
+        range,
+        monitor?.intervalSeconds ?? 60
+    );
     const showSkeleton = useDelayedLoading(isPending);
 
     let content;
