@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import {
     Area,
-    AreaChart,
+    ComposedChart,
     CartesianGrid,
     DotProps,
     Line,
@@ -68,7 +68,7 @@ export function ResponseTimeChart({ chart, stats }: ResponseTimeChartProps) {
 
             <div className="relative h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
+                    <ComposedChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
                         <defs>
                             <linearGradient id="response-time-fill" x1="0" y1="0" x2="0" y2="1">
                                 <stop
@@ -121,16 +121,15 @@ export function ResponseTimeChart({ chart, stats }: ResponseTimeChartProps) {
                             dataKey="marker"
                             stroke="none"
                             dot={<FailureDot />}
-                            activeDot={false}
                             connectNulls={false}
                             isAnimationActive={false}
                             legendType="none"
                         />
-                    </AreaChart>
+                    </ComposedChart>
                 </ResponsiveContainer>
                 {!hasData && (
                     <div className="text-muted-foreground absolute inset-0 flex items-center justify-center text-sm">
-                        No successful checks in this period
+                        No checks in this period
                     </div>
                 )}
             </div>

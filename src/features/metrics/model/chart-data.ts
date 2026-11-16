@@ -30,5 +30,5 @@ export function toChartData(points: ChartPoint[]): ChartDatum[] {
 }
 
 export function hasResponseData(points: ChartPoint[]): boolean {
-    return points.some((point) => point.avgResponseTimeMs !== null);
+    return points.some((point) => point.totalChecks > 0);
 }
