@@ -5,6 +5,8 @@ import {
     Area,
     AreaChart,
     CartesianGrid,
+    DotProps,
+    Line,
     ResponsiveContainer,
     Tooltip,
     XAxis,
@@ -19,8 +21,22 @@ import { Chart, Stats } from "@/shared/api/types";
 const TICK = { fill: "var(--muted-foreground)", fontSize: 12 };
 
 function IsolatedDot({ cx, cy, payload }: { cx?: number; cy?: number; payload?: ChartDatum }) {
-    if (!payload?.isolated || cx === undefined || cy === undefined) return null;
+    if (!payload?.isolated || typeof cx !== "number" || typeof cy !== "number") return null;
     return <circle cx={cx} cy={cy} r={3} fill="var(--success)" />;
+}
+
+function FailureDot({ cy, cx }: DotProps) {
+    if (typeof cx !== "number" || typeof cy !== "number") return null;
+    return (
+        <circle
+            cx={cx}
+            cy={cy}
+            r={4}
+            fill="var(--destructive)"
+            stroke="var(--card)"
+            strokeWidth={2}
+        />
+    );
 }
 
 function formatAxisMs(value: number): string {
@@ -52,7 +68,7 @@ export function ResponseTimeChart({ chart, stats }: ResponseTimeChartProps) {
 
             <div className="relative h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+                    <AreaChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 4 }}>
                         <defs>
                             <linearGradient id="response-time-fill" x1="0" y1="0" x2="0" y2="1">
                                 <stop
@@ -84,7 +100,7 @@ export function ResponseTimeChart({ chart, stats }: ResponseTimeChartProps) {
                             tickLine={false}
                             axisLine={false}
                             width={48}
-                            domain={[0, "auto"]}
+                            domain={[0, (dataMax: number) => Math.max(dataMax, 100)]}
                         />
                         <Tooltip
                             content={<ChartTooltip bucketSeconds={chart.bucketSeconds} />}
@@ -100,6 +116,15 @@ export function ResponseTimeChart({ chart, stats }: ResponseTimeChartProps) {
                             dot={<IsolatedDot />}
                             activeDot={{ r: 4 }}
                             isAnimationActive={false}
+                        />
+                        <Line
+                            dataKey="marker"
+                            stroke="none"
+                            dot={<FailureDot />}
+                            activeDot={false}
+                            connectNulls={false}
+                            isAnimationActive={false}
+                            legendType="none"
                         />
                     </AreaChart>
                 </ResponsiveContainer>

@@ -26,6 +26,9 @@ export function ChartTooltip({ bucketSeconds, active, payload }: ChartTooltipPro
         <div className="bg-popover border-border flex min-w-44 flex-col gap-1 rounded-lg border p-3 text-xs shadow-lg">
             <p className="font-medium">{format(new Date(datum.timestamp), "MMM d, HH:mm")}</p>
             <p className="text-muted-foreground mb-1">Bucket: {formatBucketSize(bucketSeconds)}</p>
+            {datum.total > 0 && datum.avg === null && (
+                <p className="text-destructive font-medium">All checks failed</p>
+            )}
             {datum.total === 0 ? (
                 <p className="text-muted-foreground">No checks</p>
             ) : (

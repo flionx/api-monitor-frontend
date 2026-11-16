@@ -8,6 +8,7 @@ export interface ChartDatum {
     failed: number;
     uptime: number | null;
     isolated: boolean;
+    marker: number | null;
 }
 
 export function toChartData(points: ChartPoint[]): ChartDatum[] {
@@ -22,7 +23,8 @@ export function toChartData(points: ChartPoint[]): ChartDatum[] {
             total: point.totalChecks,
             failed: point.failedChecks,
             uptime: point.uptimePercent,
-            isolated: point.avgResponseTimeMs !== null && prev === null && next === null
+            isolated: point.avgResponseTimeMs !== null && prev === null && next === null,
+            marker: point.failedChecks > 0 ? (point.avgResponseTimeMs ?? 0) : null
         };
     });
 }
