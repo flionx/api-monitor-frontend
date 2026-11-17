@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CircleUser } from "lucide-react";
 import { NAV_ITEMS } from "@/shared/config/navigation";
 import { isActivePath } from "@/shared/lib/breadcrumbs";
 import {
