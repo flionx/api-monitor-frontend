@@ -117,6 +117,16 @@ export function ResponseTimeChart({ chart, stats }: ResponseTimeChartProps) {
                             activeDot={{ r: 4 }}
                             isAnimationActive={false}
                         />
+                        <Area
+                            dataKey="failureValue"
+                            type="monotone"
+                            stroke="var(--destructive)"
+                            strokeWidth={2}
+                            connectNulls={false}
+                            dot={false}
+                            activeDot={false}
+                            isAnimationActive={false}
+                        />
                         <Line
                             dataKey="marker"
                             stroke="none"
