@@ -4,7 +4,8 @@ Frontend for [API Monitor](https://github.com/flionx/api-monitor-backend), an up
 
 ## Status
 
-🚧 **Work in progress.** Auth, layout, a paginated monitors list, and the create monitor form are implemented. Monitor details, check history, metrics, and notifiers are coming next.
+🚧 **Work in progress.**
+Implemented: auth (httpOnly cookie), app layout, metrics (chart/stats), monitor list, monitor creation, monitor details page, settings (edit, delete) and check history. Notifiers are coming next.
 
 ## Tech stack
 
@@ -20,6 +21,7 @@ Frontend for [API Monitor](https://github.com/flionx/api-monitor-backend), an up
 ### Prerequisites
 
 - Node.js 24, pnpm (version pinned in `package.json` via `packageManager`)
+- Running [API Monitor Backend](https://github.com/flionx/api-monitor-backend)
 
 ### Installation
 
