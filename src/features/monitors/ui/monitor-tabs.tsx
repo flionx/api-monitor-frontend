@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "cn";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const TABS = [
     { label: "Info", path: "" },
@@ -11,13 +11,13 @@ const TABS = [
     { label: "Settings", path: "/settings" }
 ] as const;
 
-export default function MonitorTabs({ id }: { id: number }) {
+export function MonitorTabs({ id }: { id: number }) {
     const pathname = usePathname();
 
     return (
         <nav
             aria-label="Monitor sections"
-            className="flex gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--border)]"
+            className="flex shrink-0 gap-1 overflow-x-auto shadow-[inset_0_-1px_0_var(--border)]"
         >
             {TABS.map((tab) => {
                 const href = `/monitors/${id}${tab.path}`;

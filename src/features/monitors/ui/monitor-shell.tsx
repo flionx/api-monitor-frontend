@@ -12,7 +12,7 @@ import { ErrorState } from "@/shared/ui/error-state";
 import { StatusBadge } from "@/shared/ui/status-badge";
 import { getDisplayStatus } from "@/shared/lib/status";
 import { ExternalLink } from "lucide-react";
-import MonitorTabs from "./monitor-tabs";
+import { MonitorTabs } from "./monitor-tabs";
 
 export function MonitorShell({ id, children }: { id: number; children: ReactNode }) {
     const { data: monitor, error, isPending, refetch } = useMonitor(id);
@@ -40,7 +40,7 @@ export function MonitorShell({ id, children }: { id: number; children: ReactNode
     }
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex h-full flex-col gap-6">
             <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-3">
                     <h1 className="min-w-0 truncate text-xl font-semibold">{monitor.name}</h1>
