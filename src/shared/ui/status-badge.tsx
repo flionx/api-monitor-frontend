@@ -1,5 +1,5 @@
-import { DisplayStatus } from "@/shared/lib/status";
 import { cn } from "cn";
+import { DisplayStatus } from "@/shared/lib/status";
 
 const STATUS_STYLES: Record<DisplayStatus, { label: string; text: string; dot: string }> = {
     up: { label: "Up", text: "text-success", dot: "bg-success" },

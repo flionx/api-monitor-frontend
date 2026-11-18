@@ -1,4 +1,4 @@
-import { formatDistanceToNow } from "date-fns";
+import { format, formatDistanceToNow, isToday } from "date-fns";
 
 export function formatRelative(iso: string | null): string {
     if (!iso) return "Never";
@@ -11,7 +11,22 @@ export function formatDateTime(iso: string | null): string | undefined {
     return iso ? new Date(iso).toLocaleString() : undefined;
 }
 
+export function formatDateShort(iso: string | null): string | undefined {
+    if (!iso) return undefined;
+    const date = new Date(iso);
+    return isToday(date) ? undefined : format(date, "MMM d");
+}
+
+export function formatTime(iso: string | null): string {
+    return iso ? format(new Date(iso), "HH:mm:ss") : "-";
+}
+
 export function formatResponseTime(ms: number | null): string {
     if (ms === null) return "-";
     return ms >= 1000 ? `${(ms / 1000).toFixed(2)} s` : `${ms} ms`;
+}
+
+export function formatBucketSize(seconds: number): string {
+    if (seconds < 3600) return `${Math.round(seconds / 60)} min`;
+    return `${Number((seconds / 3600).toFixed(1))} h`;
 }
